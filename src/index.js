@@ -19,7 +19,10 @@ searchForm.addEventListener('submit', event => {
 
     const form = event.currentTarget;
     searchQuery = form.elements.query.value;
-
+    if (!searchQuery) {
+        PNotify.alert();
+        return;
+    }
     imageList.innerHTML = '';
     page = 1;
     fetchItem(searchQuery, page).then(hits => {
