@@ -11,34 +11,35 @@ import fetchItem from './js/fetchImg';
 import imgItem from './tmpl/imgItem.hbs';
 import './sass/styles.scss';
 
-let page = '';
-let searchQuery = '';
-
 searchForm.addEventListener('submit', event => {
     event.preventDefault();
 
     const form = event.currentTarget;
-    searchQuery = form.elements.query.value;
-    if (!searchQuery) {
-        PNotify.alert();
+    fetchItem.query = form.elements.query.value;
+
+    fetchItem.reset();
+    imageList.innerHTML = '';
+    btnSearch.classList.add('hidden');
+    if (!fetchItem.query) {
+        PNotify.error({ title: 'Oooopsy', text: 'input mistake' });
         return;
     }
-    imageList.innerHTML = '';
-    page = 1;
-    fetchItem(searchQuery, page).then(hits => {
-        imgMarkup(hits);
-        page += 1;
-    });
+
+    nextPageMarkup();
 });
 
 btnSearch.addEventListener('click', () => {
-    fetchItem(searchQuery, page).then(hits => {
-        imgMarkup(hits);
-        page += 1;
-    });
+    nextPageMarkup();
 });
 
 function imgMarkup(hits) {
     const markup = imgItem(hits);
     imageList.insertAdjacentHTML('beforeend', markup);
+}
+
+function nextPageMarkup() {
+    fetchItem.fetch().then(hits => {
+        imgMarkup(hits);
+        btnSearch.classList.remove('hidden');
+    });
 }
