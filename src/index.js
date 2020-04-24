@@ -29,10 +29,6 @@ searchForm.addEventListener('submit', event => {
 
 btnSearch.addEventListener('click', () => {
     nextPageMarkup();
-    window.scrollTo({
-        top: document.documentElement.offsetHeight,
-        behavior: 'smooth',
-    });
 });
 
 /*imageList.addEventListener('click', event => {
