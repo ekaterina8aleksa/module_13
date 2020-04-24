@@ -1,6 +1,5 @@
 import * as basicLightbox from 'basiclightbox';
 import PNotify from 'pnotify/dist/es/PNotify';
-import PNotifyButtons from 'pnotify/dist/es/PNotifyButtons';
 import 'pnotify/dist/es/PNotifyStyleMaterial.js';
 import 'material-design-icons/iconfont/material-icons.css';
 PNotify.defaults.styling = 'material';
@@ -30,7 +29,17 @@ searchForm.addEventListener('submit', event => {
 
 btnSearch.addEventListener('click', () => {
     nextPageMarkup();
+    window.scrollTo({
+        top: document.documentElement.offsetHeight,
+        behavior: 'smooth',
+    });
 });
+
+/*imageList.addEventListener('click', event => {
+    if (event.target.dataset.imgbig != null) {
+        basicLightbox.create(`<img src="${event.target.dataset.imgbig}">`).show();
+    }
+});*/
 
 function imgMarkup(hits) {
     const markup = imgItem(hits);
@@ -41,5 +50,10 @@ function nextPageMarkup() {
     fetchItem.fetch().then(hits => {
         imgMarkup(hits);
         btnSearch.classList.remove('hidden');
+        window.scrollTo({
+            top: imageList.scrollHeight,
+            behavior: 'smooth',
+        });
     });
 }
+//data-imgbig="{{largeImageURL}}
