@@ -5,15 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Module_13</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
     </head>
 
     <body>
         <form class="search-form" id="search-form">
             <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
-            <button type="submit" class="btn js-btn">Search</button>
+            <button type="submit" class="btn btn-custom js-btn">Search</button>
         </form>
 
         <ul class="gallery"></ul>
-        <button type="submit" class="btn btn-loadmore hidden">Load More</button>
+
+        <button id="js-loadmore" class="btn btn-primary btn-custom" type="button">
+            <span
+                class="spinner-grow spinner-grow-sm hidden"
+                role="status"
+                aria-hidden="true"
+            ></span>
+
+            <span class="label">Load More</span>
+        </button>
+
+        <!--<button type="submit" class="btn btn-loadmore hidden">Load More</button>-->
     </body>
 </html>

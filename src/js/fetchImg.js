@@ -1,4 +1,5 @@
 import PNotify from 'pnotify/dist/es/PNotify';
+import axios from 'axios';
 
 const apiKey = '16137003-a99878a83e3cf9a5973a72148';
 
